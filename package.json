@@ -1,0 +1,57 @@
+{
+    "name": "react-basicons",
+    "version": "0.1.1",
+    "description": "React package for simple customizable svg icons.",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "scripts": {
+        "test": "jest --config jestconfig.json",
+        "build": "rollup -c",
+        "start": "rollup -c -w",
+        "bundle": "rollup -c rollup-iife.config.js",
+        "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+        "format": "prettier --write \"src/**/*.ts\" \"src/**/*.tsx\"",
+        "prepare": "npm run build",
+        "prepublishOnly": "npm test",
+        "version": "npm run format && git add -A src",
+        "postversion": "git push && git push --tags"
+    },
+    "keywords": [
+        "icons",
+        "svg",
+        "utility",
+        "react",
+        "react-icons",
+        "typescript"
+    ],
+    "author": "omojolasolomon@gmail.com",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/solomon-fibonacci/react-basicons/issues"
+    },
+    "homepage": "https://github.com/solomon-fibonacci/react-basicons/#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/solomon-fibonacci/react-basicons.git"
+    },
+    "peerDependencies": {
+        "react": "^17.0.2"
+    },
+    "devDependencies": {
+        "@types/jest": "^27.4.1",
+        "@types/react": "^16.14.23",
+        "@types/react-dom": "^16.0.5",
+        "@typescript-eslint/eslint-plugin": "^5.13.0",
+        "eslint": "^8.10.0",
+        "eslint-config-prettier": "^8.5.0",
+        "jest": "^27.5.1",
+        "prettier": "^2.5.1",
+        "rollup": "^2.69.0",
+        "rollup-plugin-typescript2": "^0.31.2",
+        "ts-jest": "^27.1.3",
+        "typescript": "^4.6.2"
+    },
+    "files": [
+        "dist"
+    ]
+}
