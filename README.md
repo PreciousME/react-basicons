@@ -1,4 +1,4 @@
-# react-croppa
+# react-basicons
 
 React package for simple customizable icons
 https://basicons.xyz
