@@ -1,3 +1,4 @@
+import { IconConfig } from './types'
 import YuanCurrencyMoney from './icons/YuanCurrencyMoney'
 import ActivityGraph from './icons/ActivityGraph'
 import SnapchatSocial from './icons/SnapchatSocial'
