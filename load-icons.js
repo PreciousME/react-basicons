@@ -1,6 +1,7 @@
 const fs = require('fs')
+const { execSync } = require('child_process')
 
-const iconsComponentDir = '/Users/bunmioosha/Projects/basicon-ui/icons'
+const iconsComponentDir = './src/icons'
 
 const getReactCode = (componentName, svg) => `
 import React from 'react'
@@ -115,6 +116,8 @@ async function ls(path) {
     }
 
     fs.promises.writeFile(`${iconsComponentDir}/index.ts`, importFileContent)
+    execSync('npm run format', { stdio: 'inherit' })
+    console.log('\n\n::: done with icons import :::\n\n')
 }
 
 ls('./svg').catch(console.error)

@@ -1,6 +1,6 @@
 import React from 'react'
 import { IconConfig } from '../types'
-const SketchDiamond: React.FC<IconConfig> = ({
+const AlphabetR: React.FC<IconConfig> = ({
     size = 24,
     color = '#000',
     weight = 1.5
@@ -14,7 +14,7 @@ const SketchDiamond: React.FC<IconConfig> = ({
             xmlns="http://www.w3.org/2000/svg"
         >
             <path
-                d="M6.5 3.5L12 3L17.5 3.5M6.5 3.5L2 8M6.5 3.5L12 21M2 8L12 21M2 8H22M12 21L22 8M12 21L17.5 3.5M22 8L17.5 3.5"
+                d="M5 12V3H14.5C16.9853 3 19 5.01472 19 7.5C19 9.98528 16.9853 12 14.5 12H5ZM5 12V21M11 12L19 21"
                 stroke={color}
                 strokeWidth={`${weight || 1.5}`}
                 strokeLinecap="round"
@@ -24,4 +24,4 @@ const SketchDiamond: React.FC<IconConfig> = ({
     )
 }
 
-export default SketchDiamond
+export default AlphabetR
