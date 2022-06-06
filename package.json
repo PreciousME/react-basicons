@@ -1,6 +1,6 @@
 {
     "name": "react-basicons",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "description": "React package for simple customizable svg icons.",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
