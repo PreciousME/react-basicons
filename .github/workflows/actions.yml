@@ -11,7 +11,7 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - uses: JS-DevTools/npm-publish@v1
-            with:
+              with:
                   token: ${{ secrets.NPM_TOKEN }}
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
@@ -28,3 +28,4 @@ jobs:
               run: npm install -g np && np publish --access public
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+                  CI: true
