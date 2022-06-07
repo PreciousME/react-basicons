@@ -20,3 +20,5 @@ jobs:
               run: npm install
             - name: Load svg to react dependecies
               run: node load-icons.js
+            - name: publish to npm
+              run: npm install -g np && np publish --access public
