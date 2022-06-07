@@ -12,6 +12,9 @@ jobs:
 
         steps:
             - uses: actions/checkout@v2
+            - uses: JS-DevTools/npm-publish@v1
+            with:
+                  token: ${{ secrets.NPM_TOKEN }}
             - name: Use Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
