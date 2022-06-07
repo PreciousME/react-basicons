@@ -9,8 +9,7 @@ jobs:
         strategy:
             matrix:
                 node-version: [12.x]
-        env:
-            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
         steps:
             - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
@@ -24,6 +23,9 @@ jobs:
               run: npm install
             - name: Load svg to react dependecies
               run: node load-icons.js
+            - name: Add env variables
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
             - name: publish to npm
               run: npm install -g np && np publish --access public
             - uses: actions/checkout@v2
