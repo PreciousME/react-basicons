@@ -29,9 +29,6 @@ const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1)
 
 const getReactFilename = (filename) => {
     const filenameWithoutExt = filename.split('.svg')[0]
-    const filenameWithoutComma = filenameWithoutExt.split(',').map((str) => {
-        return capitalize(str)
-    })
     reactFilename = filenameWithoutExt
         .split(',')
         .map((str) => capitalize(str))
@@ -89,8 +86,6 @@ function copyToReactFile(filepath) {
         fs.writeFileSync(componentFilepath, reactCode, {
             flag: 'w'
         })
-        importFileContent =
-            getImportStatement(componentName) + '\n' + importFileContent
         exportArray.push(componentName)
     } catch (e) {
         console.log(e)
@@ -104,20 +99,31 @@ async function ls(path) {
     console.log(exportArray)
     const dir = await fs.promises.opendir(path)
     for await (const dirent of dir) {
-        count++
-        console.log({ count })
         if (dirent.name === '.DS_Store') {
             console.log('no ds')
             continue
         }
-        console.log('dirent.name', dirent.name)
-        console.log('copying to react file')
+        count++
+        console.log(count, ': copying to react file', dirent.name)
         copyToReactFile(`${path}/${dirent.name}`)
     }
 
+    console.log('\n\n::: done writing icons to react files :::\n\n')
+    let exportCount = 0
+    exportArray.forEach((moduleName) => {
+        importFileContent += `\n${getImportStatement(moduleName)}`
+        exportCount++
+    })
+    console.log(`\n\n::: ${exportCount} icons exported :::\n\n`)
     fs.promises.writeFile(`${iconsComponentDir}/index.ts`, importFileContent)
-    execSync('npm run format', { stdio: 'inherit' })
-    console.log('\n\n::: done with icons import :::\n\n')
+    console.log(`\n\n::: running tests :::\n\n`)
+    // test will involve puppeteer perhaps in a github job ... or maybe in cloud build
+    // so the idea will be that once precious commits and pushes the commit
+    // the push should trigger something... that could be a cloudbuild and that would involve
+    // pulling the basicons-ui repo and reinstalling react-basicons.. opening it in puppeteer..
+    // then testing the icon count on the page
+    execSync('npm run format --silent', { stdio: 'inherit' })
+    console.log('\n\n::: done formatting :::\n\n')
 }
 
 ls('./svg').catch(console.error)
