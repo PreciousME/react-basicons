@@ -23,12 +23,7 @@ jobs:
               run: npm install
             - name: Load svg to react dependecies
               run: node load-icons.js
-            - name: Add env variables
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
             - name: publish to npm
               run: npm install -g np && np publish --access public
-            - uses: actions/checkout@v2
-              with:
-                  name: solomon-fibonacci/basicon-ui
-                  ref: refs/heads/master
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
