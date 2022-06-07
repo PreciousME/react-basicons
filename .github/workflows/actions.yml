@@ -24,8 +24,7 @@ jobs:
             - name: pull basicons-ui repo
               uses: actions/checkout@v3
               with:
-                  - npm-version: latest
-                  - node-version: ${{ matrix.node-version }}
+                  node-version: ${{ matrix.node-version }}
                   - url: 'https://github.com/solomon-fibonacci/basicon-ui.git'
                   - path: './'
                   - name: use npm to upgrade react-basicons
