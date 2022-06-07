@@ -22,22 +22,16 @@ jobs:
             - name: publish to npm
               run: npm publish
             - name: pull basicons-ui repo
-              uses: actions/checkout@v3
-              with:
-                  node-version: ${{ matrix.node-version }}
-                  - url: 'https://github.com/solomon-fibonacci/basicon-ui.git'
-                  - path: './'
-                  - name: use npm to upgrade react-basicons
-                    with:
-                        - name: install dependencies
-                          run: npm install
-                        - name: upgrade react-basicons
-                          run: npm install react-basicons@latest --save
-                        - name: build
-                          run: npm run build
-                        - name: test
-                          run: npm test
-                        - name: commit
-                          run: git add -A && git commit -m 'update react-basicons'
-                        - name: push
-                          run: git push
+              run: git clone https://github.com/solomon-fibonacci/basicon-ui.git
+            - name: cd to basicon-ui
+              run: cd basicon-ui
+            - name: install dependencies
+              run: npm install
+            - name: upgrade react-basicons
+              run: npm install react-basicons@latest --save
+            - name: build
+              run: npm run build
+            - name: commit
+              run: git add -A && git commit -m 'update react-basicons'
+            - name: push
+              run: git push
