@@ -28,4 +28,3 @@ jobs:
               run: npm install -g np && np publish --access public
               env:
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-                  CI: true
