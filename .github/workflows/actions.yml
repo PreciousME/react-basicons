@@ -23,6 +23,8 @@ jobs:
             - name: Load svg to react dependecies
               run: node load-icons.js
             - uses: actions/checkout@v2
+            - name: build with npm
+              run: npm run build
             - name: publish to npm
               run: npm install -g np && np publish --access public
             - uses: actions/checkout@v2
