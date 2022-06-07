@@ -11,17 +11,25 @@ jobs:
                 node-version: [16.x]
 
         steps:
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: Install dependencies
+              run: npm ci
+            - name: Load svg to react dependecies
+              run: node load-icons.js
+            - name: publish to npm
+              run: npm publish
             - name: pull basicons-ui repo
               uses: actions/checkout@v3
               with:
-                  repository: solomon-fibonacci/basicons-ui
-                  ref: ${{ github.ref }}
-                  submodules: true
+                  - npm-version: latest
+                  - node-version: ${{ matrix.node-version }}
+                  - url: 'https://github.com/solomon-fibonacci/basicon-ui.git'
+                  - path: './'
                   - name: use npm to upgrade react-basicons
-                    uses: actions/setup-node@v1
                     with:
-                        npm-version: latest
-                        node-version: 16.x
                         - name: install dependencies
                           run: npm install
                         - name: upgrade react-basicons
@@ -31,16 +39,6 @@ jobs:
                         - name: test
                           run: npm test
                         - name: commit
-                          run: git add -A
-                          run: git commit -m "update react-basicons"
+                          run: git add -A && git commit -m 'update react-basicons'
                         - name: push
                           run: git push
-
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v3
-              with:
-                  node-version: ${{ matrix.node-version }}
-            - name: Installing dependecies
-              run: npm install
-            - name: Running elsint
-              run: npm run lint
