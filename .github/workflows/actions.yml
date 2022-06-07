@@ -8,30 +8,15 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [16.x]
+                node-version: [12.x]
 
         steps:
+            - uses: actions/checkout@v2
             - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v2
+              uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-            - name: Install dependencies
+            - name: Installing dependecies
               run: npm install
-            - name: Load svg to react dependecies
-              run: node load-icons.js
-            - name: publish to npm
-              run: npm publish
-            - name: pull basicons-ui repo
-              run: git clone https://github.com/solomon-fibonacci/basicon-ui.git
-            - name: cd to basicon-ui
-              run: cd basicon-ui
-            - name: install dependencies
-              run: npm install
-            - name: upgrade react-basicons
-              run: npm install react-basicons@latest --save
-            - name: build
-              run: npm run build
-            - name: commit
-              run: git add -A && git commit -m 'update react-basicons'
-            - name: push
-              run: git push
+            - name: Running elsint
+              run: npm run lint
